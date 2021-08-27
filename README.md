@@ -1,4 +1,4 @@
-# flutter_bloc_dio_practice
+# Flutter Anime
 
 A new Flutter project.
 
