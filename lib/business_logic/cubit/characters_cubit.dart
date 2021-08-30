@@ -1,4 +1,5 @@
 import 'package:bloc/bloc.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc_dio_practice/data/models/character_model.dart';
 import 'package:flutter_bloc_dio_practice/data/repositories/characters_repository.dart';
 import 'package:meta/meta.dart';
@@ -8,13 +9,40 @@ part 'characters_state.dart';
 class CharactersCubit extends Cubit<CharactersState> {
   CharactersCubit(this.charactersRepository) : super(CharactersInitial());
   final CharacterRepository charactersRepository;
-  List<Character> characters = [];
+  final searchTextController = TextEditingController();
 
-  List<Character> fetchCharacters() {
+  List<Character> characters = [];
+  List<Character> searchedCharacters = [];
+  bool isSearching = false;
+
+  void fetchCharacters() {
     charactersRepository.fetchAllCharacters().then((characters) {
-      emit(CharactersLoadedState(characters));
       this.characters = characters;
+      emit(CharactersLoadedState());
     });
-    return characters;
+  }
+
+  void addSearchedItemToSearchedList(String searchedCharacter) {
+    searchedCharacters = characters
+        .where((character) =>
+            character.name.toLowerCase().startsWith(searchedCharacter))
+        .toList();
+    emit(AddSearchedItemToSearchedListState());
+  }
+
+  void startSearch() {
+    isSearching = true;
+    emit(StartSearchState());
+  }
+
+  void stopSearching() {
+    clearSearch();
+    isSearching = false;
+    emit(StopSearchState());
+  }
+
+  void clearSearch() {
+    searchTextController.clear();
+    emit(ClearSearchState());
   }
 }
