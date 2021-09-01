@@ -7,6 +7,8 @@ import 'package:flutter_bloc_dio_practice/data/services/character_web_services.d
 import 'package:flutter_bloc_dio_practice/presentation/screens/character_details_screen.dart';
 import 'package:flutter_bloc_dio_practice/presentation/screens/characters_screen.dart';
 
+import 'data/models/character_model.dart';
+
 class AppRouter {
   late CharacterRepository characterRepository;
   late CharactersCubit characterCubit;
@@ -26,7 +28,9 @@ class AppRouter {
           ),
         );
       case characterDetailsScreenRoute:
-        return MaterialPageRoute(builder: (_) => CharacterDetailsScreen());
+        final character = settings.arguments as Character;
+        return MaterialPageRoute(
+            builder: (_) => CharacterDetailsScreen(character: character));
     }
   }
 }

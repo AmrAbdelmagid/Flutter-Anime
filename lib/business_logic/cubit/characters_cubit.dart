@@ -35,7 +35,7 @@ class CharactersCubit extends Cubit<CharactersState> {
     emit(StartSearchState());
   }
 
-  void stopSearching() {
+  void stopSearch() {
     clearSearch();
     isSearching = false;
     emit(StopSearchState());

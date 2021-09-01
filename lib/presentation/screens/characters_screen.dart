@@ -26,6 +26,7 @@ class _CharactersScreenState extends State<CharactersScreen> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: AppColors.myYellow,
+        leadingWidth: cubit.isSearching ? 32.0 : 0,
         leading: cubit.isSearching
             ? BackButton(
                 color: AppColors.myGrey,

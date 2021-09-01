@@ -22,7 +22,7 @@ class AppBarIconButton {
               onPressed: () {
                 cubit.startSearch();
                 ModalRoute.of(context)!.addLocalHistoryEntry(
-                    LocalHistoryEntry(onRemove: cubit.stopSearching));
+                    LocalHistoryEntry(onRemove: cubit.stopSearch));
               },
               icon: Icon(
                 Icons.search,
