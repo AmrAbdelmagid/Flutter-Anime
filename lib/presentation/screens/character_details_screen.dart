@@ -27,13 +27,17 @@ class CharacterDetailsScreen extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      CharacterInfo(title: 'Name', value: character.enName),
+                      CharacterInfo(
+                          title: 'Name',
+                          value: character.characterAttributes!.name),
                       EditableDivider(endIndent: 280),
                       CharacterInfo(
-                          title: 'Created at', value: character.createdAt),
+                          title: 'Created at',
+                          value: character.characterAttributes!.createdAt),
                       EditableDivider(endIndent: 240),
                       CharacterInfo(
-                          title: 'Description', value: character.description),
+                          title: 'Description',
+                          value: character.characterAttributes!.description),
                       EditableDivider(endIndent: 200),
                     ],
                   ),

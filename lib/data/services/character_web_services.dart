@@ -2,27 +2,29 @@ import 'dart:developer';
 import 'dart:convert';
 import 'package:dio/dio.dart';
 import 'package:flutter_bloc_dio_practice/constants/api_constants.dart';
+import 'package:flutter_bloc_dio_practice/data/models/character_model.dart';
 
 class CharacterWebServices {
-  late Dio dio;
+  late Dio _dio;
 
   CharacterWebServices() {
     BaseOptions options = BaseOptions(
-      baseUrl: baseUrl,
+      baseUrl: charactersBaseUrl,
       receiveDataWhenStatusError: true,
       connectTimeout: 20 * 1000, // 20 seconds
       receiveTimeout: 20 * 1000,
     );
-    dio = Dio(options);
+    _dio = Dio(options);
   }
 
-  Future<List<dynamic>> getAllCharacters() async {
+  Future<List<Character>> getAllCharacters() async {
+    CharactersData? data;
     try {
-      Response response = await dio.get(charactersEndpoint);
-      // log(response.data.toString());
-      // log((response.data).runtimeType.toString());
-      Map map = jsonDecode(response.data);
-      return map['data'];
+      Response response = await _dio.get(charactersEndpoint);
+      Map<String, dynamic> map = jsonDecode(response.data);
+      data = CharactersData.fromJson(map);
+      return data.charactersData;
+      // return map['data'];
     } catch (e) {
       log(e.toString());
       return [];

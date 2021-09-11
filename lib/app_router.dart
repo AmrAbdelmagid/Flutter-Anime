@@ -6,7 +6,6 @@ import 'package:flutter_bloc_dio_practice/data/repositories/characters_repositor
 import 'package:flutter_bloc_dio_practice/data/services/character_web_services.dart';
 import 'package:flutter_bloc_dio_practice/presentation/screens/character_details_screen.dart';
 import 'package:flutter_bloc_dio_practice/presentation/screens/characters_screen.dart';
-
 import 'data/models/character_model.dart';
 
 class AppRouter {

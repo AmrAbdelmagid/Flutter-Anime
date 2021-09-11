@@ -16,13 +16,13 @@ class CharacterSliverAppBar extends StatelessWidget {
       backgroundColor: AppColors.myGrey,
       flexibleSpace: FlexibleSpaceBar(
         title: Text(
-          character.name,
+          character.characterAttributes!.name,
           style: TextStyle(color: AppColors.myWhite),
         ),
         background: Hero(
           tag: character.id,
           child: Image.network(
-            character.image,
+            character.characterAttributes!.imageSource!.original,
             fit: BoxFit.cover,
           ),
         ),

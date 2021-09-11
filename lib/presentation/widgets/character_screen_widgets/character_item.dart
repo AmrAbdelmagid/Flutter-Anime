@@ -23,12 +23,14 @@ class CharacterItem extends StatelessWidget {
             tag: character.id,
             child: Container(
               color: AppColors.myGrey,
-              child: character.image.isNotEmpty
+              child: character
+                      .characterAttributes!.imageSource!.original.isNotEmpty
                   ? FadeInImage.assetNetwork(
                       height: double.infinity,
                       width: double.infinity,
                       placeholder: 'assets/images/loading.gif',
-                      image: character.image,
+                      image:
+                          character.characterAttributes!.imageSource!.original,
                       fit: BoxFit.cover,
                     )
                   : Image.asset('assets/images/loading.gif'),
@@ -40,7 +42,7 @@ class CharacterItem extends StatelessWidget {
             color: Colors.black54,
             alignment: Alignment.bottomCenter,
             child: Text(
-              character.name,
+              character.characterAttributes!.name,
               style: TextStyle(
                   height: 1.3,
                   fontSize: 16.0,
