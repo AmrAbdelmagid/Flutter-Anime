@@ -1,20 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_bloc_dio_practice/business_logic/cubit/characters_cubit.dart';
+import 'package:flutter_bloc_dio_practice/business_logic/cubits/cubit/quotes_cubit.dart';
 import 'package:flutter_bloc_dio_practice/constants/strings.dart';
 import 'package:flutter_bloc_dio_practice/data/repositories/characters_repository.dart';
+import 'package:flutter_bloc_dio_practice/data/repositories/quotes_repository.dart';
 import 'package:flutter_bloc_dio_practice/data/services/character_web_services.dart';
+import 'package:flutter_bloc_dio_practice/data/services/quotes_web_services.dart';
 import 'package:flutter_bloc_dio_practice/presentation/screens/character_details_screen.dart';
 import 'package:flutter_bloc_dio_practice/presentation/screens/characters_screen.dart';
+import 'business_logic/cubits/characters_cubit/characters_cubit.dart';
 import 'data/models/character_model.dart';
 
 class AppRouter {
   late CharacterRepository characterRepository;
   late CharactersCubit characterCubit;
+  late QuoteRepository quoteRepository;
+  late QuotesCubit quotesCubit;
 
   AppRouter() {
     characterRepository = CharacterRepository(CharacterWebServices());
     characterCubit = CharactersCubit(characterRepository);
+    quoteRepository = QuoteRepository(QuoteWebServices());
+    quotesCubit = QuotesCubit(quoteRepository);
   }
 
   Route? generateRoute(RouteSettings settings) {
@@ -29,7 +36,10 @@ class AppRouter {
       case characterDetailsScreenRoute:
         final character = settings.arguments as Character;
         return MaterialPageRoute(
-            builder: (_) => CharacterDetailsScreen(character: character));
+            builder: (_) => BlocProvider<QuotesCubit>(
+                  create: (context) => quotesCubit,
+                  child: CharacterDetailsScreen(character: character),
+                ));
     }
   }
 }

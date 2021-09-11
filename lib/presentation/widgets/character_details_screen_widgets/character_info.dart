@@ -13,6 +13,8 @@ class CharacterInfo extends StatelessWidget {
   Widget build(BuildContext context) {
     return RichText(
       maxLines: maxLines,
+      overflow: TextOverflow.ellipsis,
+
       // overflow: TextOverflow.ellipsis,
       text: TextSpan(children: [
         TextSpan(

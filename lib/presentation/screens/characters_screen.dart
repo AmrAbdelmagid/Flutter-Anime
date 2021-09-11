@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_bloc_dio_practice/business_logic/cubit/characters_cubit.dart';
+import 'package:flutter_bloc_dio_practice/business_logic/cubits/characters_cubit/characters_cubit.dart';
 import 'package:flutter_bloc_dio_practice/constants/colors.dart';
 import 'package:flutter_bloc_dio_practice/presentation/widgets/character_screen_widgets/app_bar_actions.dart';
 import 'package:flutter_bloc_dio_practice/presentation/widgets/character_screen_widgets/characters_list.dart';
