@@ -1,9 +1,9 @@
 import 'dart:developer';
 import 'dart:convert';
 import 'package:dio/dio.dart';
-import 'package:flutter_bloc_dio_practice/constants/api_constants.dart';
-import 'package:flutter_bloc_dio_practice/data/models/character_model.dart';
-import 'package:flutter_bloc_dio_practice/helpers/dio_helper.dart';
+import '../../constants/api_constants.dart';
+import '../models/character_model.dart';
+import '../../helpers/dio_helper.dart';
 
 class CharacterWebServices {
   Future<List<Character>> getAllCharacters() async {

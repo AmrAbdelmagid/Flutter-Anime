@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc_dio_practice/constants/colors.dart';
-import 'package:flutter_bloc_dio_practice/presentation/widgets/character_screen_widgets/character_item.dart';
+import '../../../constants/colors.dart';
+import 'character_item.dart';
 
 class CharactersList extends StatelessWidget {
   final cubit;

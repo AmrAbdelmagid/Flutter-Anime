@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc_dio_practice/constants/colors.dart';
-import 'package:flutter_bloc_dio_practice/constants/strings.dart';
-import 'package:flutter_bloc_dio_practice/data/models/character_model.dart';
+import '../../../constants/colors.dart';
+import '../../../constants/strings.dart';
+import '../../../data/models/character_model.dart';
 
 class CharacterItem extends StatelessWidget {
   final Character character;

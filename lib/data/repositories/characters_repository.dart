@@ -1,5 +1,5 @@
-import 'package:flutter_bloc_dio_practice/data/models/character_model.dart';
-import 'package:flutter_bloc_dio_practice/data/services/character_web_services.dart';
+import '../models/character_model.dart';
+import '../services/character_web_services.dart';
 
 class CharacterRepository {
   final CharacterWebServices characterWebServices;

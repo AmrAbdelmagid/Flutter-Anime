@@ -28,6 +28,7 @@ dependencies:
     sdk: flutter
   flutter_bloc: ^7.2.0
   flutter_offline: ^2.0.0
+  flutter_svg: ^0.22.0
 
 dev_dependencies:
   flutter_test:

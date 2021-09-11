@@ -1,13 +1,13 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_bloc_dio_practice/business_logic/cubits/cubit/quotes_cubit.dart';
-import 'package:flutter_bloc_dio_practice/constants/colors.dart';
-import 'package:flutter_bloc_dio_practice/data/models/character_model.dart';
-import 'package:flutter_bloc_dio_practice/presentation/widgets/character_details_screen_widgets/animated_quote.dart';
-import 'package:flutter_bloc_dio_practice/presentation/widgets/character_details_screen_widgets/character_info.dart';
-import 'package:flutter_bloc_dio_practice/presentation/widgets/character_details_screen_widgets/character_sliver_app_bar.dart';
-import 'package:flutter_bloc_dio_practice/presentation/widgets/character_details_screen_widgets/editable_divider.dart';
+import '../../business_logic/cubits/cubit/quotes_cubit.dart';
+import '../../constants/colors.dart';
+import '../../data/models/character_model.dart';
+import '../widgets/character_details_screen_widgets/animated_quote.dart';
+import '../widgets/character_details_screen_widgets/character_info.dart';
+import '../widgets/character_details_screen_widgets/character_sliver_app_bar.dart';
+import '../widgets/character_details_screen_widgets/editable_divider.dart';
 
 class CharacterDetailsScreen extends StatefulWidget {
   final Character character;

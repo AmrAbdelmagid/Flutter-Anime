@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc_dio_practice/app_router.dart';
+import 'app_router.dart';
 
 void main() {
   runApp(AnimeApp(

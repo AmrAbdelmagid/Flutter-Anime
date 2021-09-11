@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_bloc_dio_practice/business_logic/cubits/cubit/quotes_cubit.dart';
-import 'package:flutter_bloc_dio_practice/constants/strings.dart';
-import 'package:flutter_bloc_dio_practice/data/repositories/characters_repository.dart';
-import 'package:flutter_bloc_dio_practice/data/repositories/quotes_repository.dart';
-import 'package:flutter_bloc_dio_practice/data/services/character_web_services.dart';
-import 'package:flutter_bloc_dio_practice/data/services/quotes_web_services.dart';
-import 'package:flutter_bloc_dio_practice/presentation/screens/character_details_screen.dart';
-import 'package:flutter_bloc_dio_practice/presentation/screens/characters_screen.dart';
 import 'business_logic/cubits/characters_cubit/characters_cubit.dart';
+import 'business_logic/cubits/cubit/quotes_cubit.dart';
+import 'constants/strings.dart';
 import 'data/models/character_model.dart';
+import 'data/repositories/characters_repository.dart';
+import 'data/repositories/quotes_repository.dart';
+import 'data/services/character_web_services.dart';
+import 'data/services/quotes_web_services.dart';
+import 'presentation/screens/character_details_screen.dart';
+import 'presentation/screens/characters_screen.dart';
 
 class AppRouter {
   late CharacterRepository characterRepository;

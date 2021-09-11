@@ -1,5 +1,5 @@
-import 'package:flutter_bloc_dio_practice/data/models/quote.dart';
-import 'package:flutter_bloc_dio_practice/data/services/quotes_web_services.dart';
+import '../models/quote.dart';
+import '../services/quotes_web_services.dart';
 
 class QuoteRepository {
   final QuoteWebServices quoteWebServices;

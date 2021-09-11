@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc_dio_practice/data/models/character_model.dart';
-import 'package:flutter_bloc_dio_practice/data/repositories/characters_repository.dart';
+import '../../../data/models/character_model.dart';
+import '../../../data/repositories/characters_repository.dart';
 import 'package:meta/meta.dart';
 
 part 'characters_state.dart';

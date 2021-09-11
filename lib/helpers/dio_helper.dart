@@ -1,10 +1,10 @@
 import 'package:dio/dio.dart';
 
 class DioHelper {
-  static late Dio dio;
+  static Dio _dio = Dio();
 
   static init() {
-    dio = Dio(
+    _dio = Dio(
       BaseOptions(
         receiveDataWhenStatusError: true,
         connectTimeout: 20 * 1000, // 20 seconds
@@ -16,6 +16,6 @@ class DioHelper {
   static Future<Response> getData({
     required String pathUrl,
   }) async {
-    return await dio.get(pathUrl);
+    return await _dio.get(pathUrl);
   }
 }
