@@ -58,7 +58,11 @@ class _CharacterDetailsScreenState extends State<CharacterDetailsScreen> {
                           value: widget
                               .character.characterAttributes!.description),
                       EditableDivider(endIndent: 200),
-                      AnimatedQuote(cubit: cubit),
+                      BlocBuilder<QuotesCubit, QuotesState>(
+                        builder: (context, state) {
+                          return AnimatedQuote(cubit: cubit);
+                        },
+                      ),
                     ],
                   ),
                 ),
