@@ -14,11 +14,31 @@ class CharactersCubit extends Cubit<CharactersState> {
   List<Character> characters = [];
   List<Character> searchedCharacters = [];
   bool isSearching = false;
+  int paginationOffset = 0;
 
-  void fetchCharacters() {
-    charactersRepository.fetchAllCharacters().then((characters) {
-      this.characters = characters;
-      emit(CharactersLoadedState());
+  // void fetchCharacters() {
+  //   charactersRepository.fetchAllCharacters().then((characters) {
+  //     this.characters = characters;
+  //     emit(CharactersLoadedState());
+  //   });
+  // }
+
+  void loadCharacters() {
+    if (state is CharactersLoadingState) return;
+    final currentState = state;
+    var oldCharacters = <Character>[];
+    if (currentState is CharactersLoadedState) {
+      oldCharacters = currentState.characters;
+    }
+    emit(CharactersLoadingState(oldCharacters,
+        isFirstFetch: paginationOffset == 0));
+    charactersRepository
+        .fetchAllCharacters(paginationOffset)
+        .then((newCharacters) {
+      paginationOffset += 10;
+      final characters = (state as CharactersLoadingState).oldCharacters;
+      characters.addAll(newCharacters);
+      emit(CharactersLoadedState(characters));
     });
   }
 

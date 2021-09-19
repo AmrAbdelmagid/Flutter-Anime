@@ -6,11 +6,13 @@ import '../models/character_model.dart';
 import '../../helpers/dio_helper.dart';
 
 class CharacterWebServices {
-  Future<List<Character>> getAllCharacters() async {
+  static const FETCH_LIMIT = 10;
+  Future<List<Character>> getAllCharacters(int paginationOffset) async {
     CharactersData? data;
     try {
       Response response = await DioHelper.getData(
-          pathUrl: '$charactersBaseUrl$charactersEndpoint');
+          pathUrl: '$charactersBaseUrl$charactersEndpoint' +
+              '?page[limit]=$FETCH_LIMIT&page[offset]=$paginationOffset');
       Map<String, dynamic> map = jsonDecode(response.data);
       data = CharactersData.fromJson(map);
       return data.charactersData;

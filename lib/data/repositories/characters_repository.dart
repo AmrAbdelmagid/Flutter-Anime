@@ -6,9 +6,9 @@ class CharacterRepository {
 
   CharacterRepository(this.characterWebServices);
 
-  Future<List<Character>> fetchAllCharacters() async {
+  Future<List<Character>> fetchAllCharacters(int paginationOffset) async {
     final List<dynamic> characters =
-        await characterWebServices.getAllCharacters();
+        await characterWebServices.getAllCharacters(paginationOffset);
     return characters as List<Character>;
   }
 }
