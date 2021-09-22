@@ -26,7 +26,7 @@ dependencies:
   dio: ^4.0.0
   flutter:
     sdk: flutter
-  flutter_bloc: ^7.2.0
+  flutter_bloc: ^7.3.0
   flutter_offline: ^2.0.0
   flutter_svg: ^0.22.0
 

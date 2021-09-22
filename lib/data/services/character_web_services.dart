@@ -11,7 +11,7 @@ class CharacterWebServices {
     CharactersData? data;
     try {
       Response response = await DioHelper.getData(
-          pathUrl: '$charactersBaseUrl$charactersEndpoint' +
+          pathUrl: '$charactersBaseUrl$charactersEndpoint'
               '?page[limit]=$FETCH_LIMIT&page[offset]=$paginationOffset');
       Map<String, dynamic> map = jsonDecode(response.data);
       data = CharactersData.fromJson(map);
