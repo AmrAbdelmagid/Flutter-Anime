@@ -12,33 +12,36 @@ class CharactersCubit extends Cubit<CharactersState> {
   final searchTextController = TextEditingController();
 
   List<Character> characters = [];
+  // List<Character> oldCharacters = [];
+  // List<Character> reservedCharacters = [];
+  bool isFirstFetch = false;
+  bool isLoading = false;
+
   List<Character> searchedCharacters = [];
   bool isSearching = false;
   int paginationOffset = 0;
 
-  // void fetchCharacters() {
-  //   charactersRepository.fetchAllCharacters().then((characters) {
-  //     this.characters = characters;
-  //     emit(CharactersLoadedState());
-  //   });
-  // }
+  toggleIsLoading(bool flag) {
+    isLoading = flag;
+    emit(LoadingState());
+  }
 
   void loadCharacters() {
+    // this line prevents unnecessary calls when swiping at bottom
     if (state is CharactersLoadingState) return;
-    final currentState = state;
-    var oldCharacters = <Character>[];
-    if (currentState is CharactersLoadedState) {
-      oldCharacters = currentState.characters;
+
+    if (paginationOffset == 0) {
+      isFirstFetch = true;
     }
-    emit(CharactersLoadingState(oldCharacters,
-        isFirstFetch: paginationOffset == 0));
+    emit(CharactersLoadingState());
     charactersRepository
         .fetchAllCharacters(paginationOffset)
         .then((newCharacters) {
       paginationOffset += 10;
-      final characters = (state as CharactersLoadingState).oldCharacters;
+      isFirstFetch = false;
       characters.addAll(newCharacters);
-      emit(CharactersLoadedState(characters));
+      emit(CharactersLoadedState());
+      toggleIsLoading(false);
     });
   }
 

@@ -5,18 +5,11 @@ abstract class CharactersState {}
 
 class CharactersInitial extends CharactersState {}
 
-class CharactersLoadedState extends CharactersState {
-  final List<Character> characters;
+class CharactersLoadedState extends CharactersState {}
 
-  CharactersLoadedState(this.characters);
-}
+class LoadingState extends CharactersState {}
 
-class CharactersLoadingState extends CharactersState {
-  final List<Character> oldCharacters;
-  final bool isFirstFetch;
-
-  CharactersLoadingState(this.oldCharacters, {this.isFirstFetch = false});
-}
+class CharactersLoadingState extends CharactersState {}
 
 class AddSearchedItemToSearchedListState extends CharactersState {}
 
