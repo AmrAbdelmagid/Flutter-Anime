@@ -11,4 +11,10 @@ class CharacterRepository {
         await characterWebServices.getAllCharacters(paginationOffset);
     return characters as List<Character>;
   }
+
+  Future<List<Character>> fetchSearchCharacters(String searchValue) async {
+    final List<dynamic> characters =
+        await characterWebServices.getSearchCharacters(searchValue);
+    return characters as List<Character>;
+  }
 }

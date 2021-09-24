@@ -11,6 +11,10 @@ class LoadingState extends CharactersState {}
 
 class CharactersLoadingState extends CharactersState {}
 
+class SearchedCharactersLoadingState extends CharactersState {}
+
+class SearchedCharactersSuccessState extends CharactersState {}
+
 class AddSearchedItemToSearchedListState extends CharactersState {}
 
 class StartSearchState extends CharactersState {}

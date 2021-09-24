@@ -24,6 +24,24 @@ class CharacterWebServices {
       return [];
     }
   }
+
+  Future<List<Character>> getSearchCharacters(String searchValue) async {
+    CharactersData? data;
+    try {
+      Response response = await DioHelper.getData(
+          pathUrl: '$charactersBaseUrl$charactersEndpoint'
+              '$searchCharactersNameEndpoint$searchValue');
+      Map<String, dynamic> map = jsonDecode(response.data);
+      data = CharactersData.fromJson(map);
+      return data.charactersData;
+      // return map['data'];
+    } catch (e, s) {
+      log(e.toString());
+      log(s.toString());
+
+      return [];
+    }
+  }
 }
 
 // late Dio _dio;

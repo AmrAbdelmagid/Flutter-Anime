@@ -14,11 +14,12 @@ class CharactersCubit extends Cubit<CharactersState> {
   final searchTextController = TextEditingController();
 
   List<Character> characters = [];
+  List<Character> searchedNetworkCharacters = [];
   int paginationOffset = 0;
   bool isFirstFetch = false;
   bool isLoading = false;
 
-  List<Character> searchedCharacters = [];
+  List<Character> searchedLoadedCharacters = [];
   bool isSearching = false;
 
   toggleIsLoading(bool flag) {
@@ -46,8 +47,18 @@ class CharactersCubit extends Cubit<CharactersState> {
     });
   }
 
+  void loadSearchedNetworkCharacters(String searchedValue) {
+    emit(SearchedCharactersLoadingState());
+    charactersRepository
+        .fetchSearchCharacters(searchedValue)
+        .then((searchedCharactersNetwork) {
+      searchedNetworkCharacters.addAll(searchedCharactersNetwork);
+      emit(SearchedCharactersSuccessState());
+    });
+  }
+
   void addSearchedItemToSearchedList(String searchedCharacter) {
-    searchedCharacters = characters
+    searchedLoadedCharacters = characters
         .where((character) => character.characterAttributes!.name
             .toLowerCase()
             .startsWith(searchedCharacter))

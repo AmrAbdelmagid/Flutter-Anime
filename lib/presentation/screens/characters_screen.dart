@@ -10,8 +10,6 @@ import '../widgets/character_screen_widgets/characters_list.dart';
 import '../widgets/character_screen_widgets/search_text_field.dart';
 import 'package:flutter_offline/flutter_offline.dart';
 
-final bucket = PageStorageBucket();
-
 class CharactersScreen extends StatefulWidget {
   const CharactersScreen({Key? key}) : super(key: key);
 
@@ -23,20 +21,20 @@ class _CharactersScreenState extends State<CharactersScreen> {
   @override
   void initState() {
     super.initState();
-
     BlocProvider.of<CharactersCubit>(context).loadCharacters();
   }
 
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    log('message');
+    // jump to saved scroll position when reopening this widget
     scrollController.jumpTo(currentScrollOffset);
   }
 
   double currentScrollOffset = 0;
   void setupScrollController(context) {
     scrollController.addListener(() {
+      // save current scroll position
       currentScrollOffset = scrollController.offset;
       if (scrollController.position.atEdge) {
         if (scrollController.position.pixels != 0) {
