@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import '../../../data/models/character_model.dart';
@@ -12,14 +14,12 @@ class CharactersCubit extends Cubit<CharactersState> {
   final searchTextController = TextEditingController();
 
   List<Character> characters = [];
-  // List<Character> oldCharacters = [];
-  // List<Character> reservedCharacters = [];
+  int paginationOffset = 0;
   bool isFirstFetch = false;
   bool isLoading = false;
 
   List<Character> searchedCharacters = [];
   bool isSearching = false;
-  int paginationOffset = 0;
 
   toggleIsLoading(bool flag) {
     isLoading = flag;
@@ -28,11 +28,12 @@ class CharactersCubit extends Cubit<CharactersState> {
 
   void loadCharacters() {
     // this line prevents unnecessary calls when swiping at bottom
-    if (state is CharactersLoadingState) return;
+    if (isLoading) return;
 
     if (paginationOffset == 0) {
       isFirstFetch = true;
     }
+    toggleIsLoading(true);
     emit(CharactersLoadingState());
     charactersRepository
         .fetchAllCharacters(paginationOffset)
@@ -40,8 +41,8 @@ class CharactersCubit extends Cubit<CharactersState> {
       paginationOffset += 10;
       isFirstFetch = false;
       characters.addAll(newCharacters);
-      emit(CharactersLoadedState());
       toggleIsLoading(false);
+      emit(CharactersLoadedState());
     });
   }
 
