@@ -30,7 +30,7 @@ class CharacterWebServices {
     try {
       Response response = await DioHelper.getData(
           pathUrl: '$charactersBaseUrl$charactersEndpoint'
-              '$searchCharactersNameEndpoint$searchValue');
+              '?filter[name]=$searchValue');
       Map<String, dynamic> map = jsonDecode(response.data);
       data = CharactersData.fromJson(map);
       return data.charactersData;

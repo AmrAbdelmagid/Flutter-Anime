@@ -18,6 +18,7 @@ class CharactersScreen extends StatefulWidget {
 }
 
 class _CharactersScreenState extends State<CharactersScreen> {
+  double currentScrollOffset = 0;
   @override
   void initState() {
     super.initState();
@@ -28,18 +29,22 @@ class _CharactersScreenState extends State<CharactersScreen> {
   void didChangeDependencies() {
     super.didChangeDependencies();
     // jump to saved scroll position when reopening this widget
-    scrollController.jumpTo(currentScrollOffset);
+    if (scrollController.hasClients) {
+      scrollController.jumpTo(currentScrollOffset);
+    }
   }
 
-  double currentScrollOffset = 0;
   void setupScrollController(context) {
+    final cubit = BlocProvider.of<CharactersCubit>(context);
     scrollController.addListener(() {
       // save current scroll position
       currentScrollOffset = scrollController.offset;
       if (scrollController.position.atEdge) {
         if (scrollController.position.pixels != 0) {
-          BlocProvider.of<CharactersCubit>(context).loadCharacters();
-          BlocProvider.of<CharactersCubit>(context).toggleIsLoading(true);
+          if (cubit.isSearchingLocal || cubit.isSearchingNetwork) return;
+
+          cubit.loadCharacters();
+          cubit.toggleIsLoading(true);
           Timer(Duration(milliseconds: 30), () {
             scrollController.jumpTo(scrollController.position.maxScrollExtent);
           });
@@ -53,6 +58,7 @@ class _CharactersScreenState extends State<CharactersScreen> {
   void dispose() {
     super.dispose();
     scrollController.dispose();
+    BlocProvider.of<CharactersCubit>(context).dispose();
   }
 
   @override
@@ -62,13 +68,13 @@ class _CharactersScreenState extends State<CharactersScreen> {
     return Scaffold(
         appBar: AppBar(
           backgroundColor: AppColors.myYellow,
-          leadingWidth: cubit.isSearching ? 32.0 : 0,
-          leading: cubit.isSearching
+          leadingWidth: cubit.isSearchingLocal ? 32.0 : 0,
+          leading: cubit.isSearchingLocal
               ? BackButton(
                   color: AppColors.myGrey,
                 )
               : Container(),
-          title: cubit.isSearching
+          title: cubit.isSearchingLocal || cubit.isSearchingNetwork
               ? SearchTextField(cubit: cubit)
               : Text(
                   'Characters',

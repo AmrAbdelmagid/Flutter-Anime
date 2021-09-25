@@ -23,8 +23,9 @@ class CharacterItem extends StatelessWidget {
             tag: character.id,
             child: Container(
               color: AppColors.myGrey,
-              child: character
-                      .characterAttributes!.imageSource!.original.isNotEmpty
+              child: character.characterAttributes!.imageSource != null &&
+                      character
+                          .characterAttributes!.imageSource!.original.isNotEmpty
                   ? FadeInImage.assetNetwork(
                       height: double.infinity,
                       width: double.infinity,

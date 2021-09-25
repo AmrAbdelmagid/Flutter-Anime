@@ -17,7 +17,11 @@ class SearchTextField extends StatelessWidget {
       ),
       style: TextStyle(color: AppColors.myGrey, fontSize: 18.0),
       onChanged: (searchedCharacter) {
-        cubit.addSearchedItemToSearchedList(searchedCharacter);
+        if (cubit.isSearchingLocal) {
+          cubit.addSearchedItemToSearchedList(searchedCharacter);
+        } else if (cubit.isSearchingNetwork) {
+          cubit.loadSearchedNetworkCharacters(searchedCharacter);
+        }
       },
     );
   }

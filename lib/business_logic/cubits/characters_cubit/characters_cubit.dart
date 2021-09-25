@@ -14,13 +14,20 @@ class CharactersCubit extends Cubit<CharactersState> {
   final searchTextController = TextEditingController();
 
   List<Character> characters = [];
-  List<Character> searchedNetworkCharacters = [];
   int paginationOffset = 0;
   bool isFirstFetch = false;
   bool isLoading = false;
 
+  List<Character> searchedNetworkCharacters = [];
+
   List<Character> searchedLoadedCharacters = [];
-  bool isSearching = false;
+  bool isSearchingLocal = false;
+  bool isSearchingNetwork = false;
+
+  // toggleIsSearchingLocal(bool flag) {
+  //   isSearchingLocal = flag;
+  //   emit(SearchingState());
+  // }
 
   toggleIsLoading(bool flag) {
     isLoading = flag;
@@ -52,6 +59,7 @@ class CharactersCubit extends Cubit<CharactersState> {
     charactersRepository
         .fetchSearchCharacters(searchedValue)
         .then((searchedCharactersNetwork) {
+      searchedNetworkCharacters = [];
       searchedNetworkCharacters.addAll(searchedCharactersNetwork);
       emit(SearchedCharactersSuccessState());
     });
@@ -66,19 +74,31 @@ class CharactersCubit extends Cubit<CharactersState> {
     emit(AddSearchedItemToSearchedListState());
   }
 
-  void startSearch() {
-    isSearching = true;
-    emit(StartSearchState());
+  void startSearch(
+      {bool isSearchingOnNetwork = false, String searchValue = ''}) {
+    if (isSearchingOnNetwork) {
+      isSearchingNetwork = true;
+      emit(StartSearchState());
+      loadSearchedNetworkCharacters(searchValue);
+    } else {
+      isSearchingLocal = true;
+      emit(StartSearchState());
+    }
   }
 
   void stopSearch() {
     clearSearch();
-    isSearching = false;
+    isSearchingLocal = false;
+    isSearchingNetwork = false;
     emit(StopSearchState());
   }
 
   void clearSearch() {
     searchTextController.clear();
     emit(ClearSearchState());
+  }
+
+  void dispose() {
+    searchTextController.dispose();
   }
 }

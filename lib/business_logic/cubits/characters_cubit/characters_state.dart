@@ -9,6 +9,8 @@ class CharactersLoadedState extends CharactersState {}
 
 class LoadingState extends CharactersState {}
 
+// class SearchingState extends CharactersState {}
+
 class CharactersLoadingState extends CharactersState {}
 
 class SearchedCharactersLoadingState extends CharactersState {}

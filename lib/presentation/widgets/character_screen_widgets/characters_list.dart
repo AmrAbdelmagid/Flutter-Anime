@@ -34,13 +34,17 @@ class _CharactersListState extends State<CharactersList> {
                 padding: EdgeInsets.zero,
                 itemCount: widget.cubit.searchTextController.text.isEmpty
                     ? widget.cubit.characters.length
-                    : widget.cubit.searchedCharacters.length,
+                    : widget.cubit.isSearchingLocal
+                        ? widget.cubit.searchedLoadedCharacters.length
+                        : widget.cubit.searchedNetworkCharacters.length,
                 itemBuilder: (ctx, index) {
                   // if (index < widget.cubit.characters.length) {
                   return CharacterItem(
                     character: widget.cubit.searchTextController.text.isEmpty
                         ? widget.cubit.characters[index]
-                        : widget.cubit.searchedCharacters[index],
+                        : widget.cubit.isSearchingLocal
+                            ? widget.cubit.searchedLoadedCharacters[index]
+                            : widget.cubit.searchedNetworkCharacters[index],
                   );
                 }),
           ),
