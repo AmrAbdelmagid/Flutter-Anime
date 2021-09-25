@@ -28,7 +28,8 @@ class _CharactersScreenState extends State<CharactersScreen> {
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    // jump to saved scroll position when reopening this widget
+
+    /// Jump to saved scroll position when reopening this widget
     if (scrollController.hasClients) {
       scrollController.jumpTo(currentScrollOffset);
     }
@@ -37,7 +38,7 @@ class _CharactersScreenState extends State<CharactersScreen> {
   void setupScrollController(context) {
     final cubit = BlocProvider.of<CharactersCubit>(context);
     scrollController.addListener(() {
-      // save current scroll position
+      /// Save current scroll position for the characters list only
       if (!(cubit.isSearchingLocal || cubit.isSearchingNetwork)) {
         currentScrollOffset = scrollController.offset;
       }
