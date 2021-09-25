@@ -31,7 +31,7 @@ class _CharactersListState extends State<CharactersList> {
                   crossAxisSpacing: 1.0,
                   mainAxisSpacing: 1.0,
                 ),
-                physics: BouncingScrollPhysics(),
+                physics: const AlwaysScrollableScrollPhysics(),
                 padding: EdgeInsets.zero,
                 itemCount: widget.cubit.searchTextController.text.isEmpty
                     ? widget.cubit.characters.length

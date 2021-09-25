@@ -6,6 +6,7 @@ import 'app_router.dart';
 import 'business_logic/bloc_observer_helper/bloc_observer_helper.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
     DeviceOrientation.portraitDown,
@@ -24,9 +25,11 @@ class AnimeApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      onGenerateRoute: appRouter.generateRoute,
-      theme: ThemeData(primaryColor: AppColors.myYellow),
-    );
+        debugShowCheckedModeBanner: false,
+        onGenerateRoute: appRouter.generateRoute,
+        theme: ThemeData(
+            primaryColor: AppColors.myYellow,
+            colorScheme:
+                ColorScheme.fromSwatch(accentColor: AppColors.myGrey)));
   }
 }

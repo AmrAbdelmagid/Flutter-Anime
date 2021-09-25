@@ -38,13 +38,17 @@ class _CharactersScreenState extends State<CharactersScreen> {
     final cubit = BlocProvider.of<CharactersCubit>(context);
     scrollController.addListener(() {
       // save current scroll position
-      currentScrollOffset = scrollController.offset;
+      if (!(cubit.isSearchingLocal || cubit.isSearchingNetwork)) {
+        currentScrollOffset = scrollController.offset;
+      }
       if (scrollController.position.atEdge) {
         if (scrollController.position.pixels != 0) {
           if (cubit.isSearchingLocal || cubit.isSearchingNetwork) return;
 
           cubit.loadCharacters();
-          cubit.toggleIsLoading(true);
+          if (!cubit.isLoading) {
+            cubit.toggleIsLoading(true);
+          }
           Timer(Duration(milliseconds: 30), () {
             scrollController.jumpTo(scrollController.position.maxScrollExtent);
           });
@@ -109,11 +113,13 @@ class _CharactersScreenState extends State<CharactersScreen> {
               return Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  SvgPicture.asset(
-                    'assets/images/offline.svg',
-                    fit: BoxFit.cover,
-                    width: 300,
-                    height: 300,
+                  SizedBox(
+                    child: SvgPicture.asset(
+                      'assets/images/offline.svg',
+                      fit: BoxFit.cover,
+                      width: double.infinity,
+                      height: 300,
+                    ),
                   ),
                   SizedBox(height: 20.0),
                   Text(

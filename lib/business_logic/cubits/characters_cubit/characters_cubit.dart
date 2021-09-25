@@ -85,12 +85,13 @@ class CharactersCubit extends Cubit<CharactersState> {
 
   void stopSearch() {
     clearSearch();
-    isSearchingLocal = false;
-    isSearchingNetwork = false;
+
     emit(StopSearchState());
   }
 
   void clearSearch() {
+    isSearchingLocal = false;
+    isSearchingNetwork = false;
     searchTextController.clear();
     emit(ClearSearchState());
   }
