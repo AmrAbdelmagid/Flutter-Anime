@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import '../../../constants/colors.dart';
 import '../../../constants/strings.dart';
 import '../../../data/models/character_model.dart';
@@ -29,12 +30,12 @@ class CharacterItem extends StatelessWidget {
                   ? FadeInImage.assetNetwork(
                       height: double.infinity,
                       width: double.infinity,
-                      placeholder: 'assets/images/loading.gif',
+                      placeholder: 'assets/images/placeholder.png',
                       image:
                           character.characterAttributes!.imageSource!.original,
                       fit: BoxFit.cover,
                     )
-                  : Image.asset('assets/images/loading.gif'),
+                  : SvgPicture.asset('assets/images/placeholder.svg'),
             ),
           ),
           footer: Container(

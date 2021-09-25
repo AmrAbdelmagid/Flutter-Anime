@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc_dio_practice/presentation/widgets/adaptive_indicator.dart';
 import '../../../constants/colors.dart';
 import 'character_item.dart';
 
@@ -53,7 +54,7 @@ class _CharactersListState extends State<CharactersList> {
               child: Column(
                 children: [
                   SizedBox(height: 30),
-                  Center(child: CircularProgressIndicator.adaptive()),
+                  Center(child: AdaptiveCircularProgressIndicator()),
                   SizedBox(height: 30),
                 ],
               ),

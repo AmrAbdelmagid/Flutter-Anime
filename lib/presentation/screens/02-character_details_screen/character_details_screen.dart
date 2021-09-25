@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../business_logic/cubits/cubit/quotes_cubit.dart';
-import '../../constants/colors.dart';
-import '../../data/models/character_model.dart';
-import '../widgets/character_details_screen_widgets/animated_quote.dart';
-import '../widgets/character_details_screen_widgets/character_info.dart';
-import '../widgets/character_details_screen_widgets/character_sliver_app_bar.dart';
-import '../widgets/character_details_screen_widgets/editable_divider.dart';
+import 'package:flutter_bloc_dio_practice/presentation/screens/02-character_details_screen/character_sliver_app_bar.dart';
+import 'package:flutter_bloc_dio_practice/presentation/screens/02-character_details_screen/editable_divider.dart';
+import '../../../business_logic/cubits/cubit/quotes_cubit.dart';
+import '../../../constants/colors.dart';
+import '../../../data/models/character_model.dart';
+import 'animated_quote.dart';
+import 'character_info.dart';
+
 import 'package:intl/intl.dart';
 
 class CharacterDetailsScreen extends StatefulWidget {
@@ -69,7 +70,7 @@ class _CharacterDetailsScreenState extends State<CharacterDetailsScreen> {
                   ),
                 ),
                 SizedBox(
-                  height: 400,
+                  height: 600,
                 )
               ],
             ),

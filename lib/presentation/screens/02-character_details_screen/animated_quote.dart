@@ -1,6 +1,6 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
-import '../../../constants/colors.dart';
+import 'package:flutter_bloc_dio_practice/presentation/widgets/adaptive_indicator.dart';
 
 class AnimatedQuote extends StatelessWidget {
   const AnimatedQuote({required this.cubit, Key? key}) : super(key: key);
@@ -39,9 +39,7 @@ class AnimatedQuote extends StatelessWidget {
       );
     } else {
       return Center(
-        child: CircularProgressIndicator(
-          color: AppColors.myYellow,
-        ),
+        child: AdaptiveCircularProgressIndicator(),
       );
     }
   }

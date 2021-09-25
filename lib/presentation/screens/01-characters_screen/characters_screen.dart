@@ -1,14 +1,14 @@
 import 'dart:async';
-import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_bloc_dio_practice/presentation/screens/01-characters_screen/app_bar_actions.dart';
+import 'package:flutter_bloc_dio_practice/presentation/screens/01-characters_screen/characters_list.dart';
+import 'package:flutter_bloc_dio_practice/presentation/widgets/adaptive_indicator.dart';
 import 'package:flutter_svg/svg.dart';
-import '../../business_logic/cubits/characters_cubit/characters_cubit.dart';
-import '../../constants/colors.dart';
-import '../widgets/character_screen_widgets/app_bar_actions.dart';
-import '../widgets/character_screen_widgets/characters_list.dart';
-import '../widgets/character_screen_widgets/search_text_field.dart';
+import '../../../business_logic/cubits/characters_cubit/characters_cubit.dart';
+import '../../../constants/colors.dart';
 import 'package:flutter_offline/flutter_offline.dart';
+import 'search_text_field.dart';
 
 class CharactersScreen extends StatefulWidget {
   const CharactersScreen({Key? key}) : super(key: key);
@@ -97,7 +97,7 @@ class _CharactersScreenState extends State<CharactersScreen> {
                   return Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Center(
-                      child: CircularProgressIndicator(),
+                      child: AdaptiveCircularProgressIndicator(),
                     ),
                   );
                 }
@@ -108,22 +108,24 @@ class _CharactersScreenState extends State<CharactersScreen> {
             } else {
               return Column(
                 mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   SvgPicture.asset(
                     'assets/images/offline.svg',
                     fit: BoxFit.cover,
-                    width: double.infinity,
+                    width: 300,
                     height: 300,
                   ),
                   SizedBox(height: 20.0),
-                  Text('Check Your Connection'),
+                  Text(
+                    'Check Your Connection',
+                    style: TextStyle(color: AppColors.myWhite, fontSize: 24),
+                  ),
                 ],
               );
             }
           },
           child: Center(
-            child: CircularProgressIndicator(),
+            child: AdaptiveCircularProgressIndicator(),
           ),
         ));
   }

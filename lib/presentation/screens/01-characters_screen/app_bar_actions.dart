@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc_dio_practice/presentation/menu_items/menu_item_model.dart';
-import 'package:flutter_bloc_dio_practice/presentation/menu_items/menu_items.dart';
+import '../../menu_items/menu_item_model.dart';
+import '../../menu_items/menu_items.dart';
 
 import '../../../constants/colors.dart';
 
@@ -64,15 +64,3 @@ class AppBarIconButton {
     }
   }
 }
-
-//  IconButton(
-//               onPressed: () {
-                // cubit.startSearch();
-                // ModalRoute.of(context)!.addLocalHistoryEntry(
-                //     LocalHistoryEntry(onRemove: cubit.stopSearch));
-//               },
-//               icon: Icon(
-//                 Icons.search,
-//                 color: AppColors.myGrey,
-//               ),
-//             ),

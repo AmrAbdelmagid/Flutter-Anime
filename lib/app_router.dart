@@ -8,8 +8,8 @@ import 'data/repositories/characters_repository.dart';
 import 'data/repositories/quotes_repository.dart';
 import 'data/services/character_web_services.dart';
 import 'data/services/quotes_web_services.dart';
-import 'presentation/screens/character_details_screen.dart';
-import 'presentation/screens/characters_screen.dart';
+import 'presentation/screens/02-character_details_screen/character_details_screen.dart';
+import 'presentation/screens/01-characters_screen/characters_screen.dart';
 
 class AppRouter {
   late CharacterRepository characterRepository;
