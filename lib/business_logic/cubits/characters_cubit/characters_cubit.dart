@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import '../../../data/models/character_model.dart';
@@ -14,28 +12,18 @@ class CharactersCubit extends Cubit<CharactersState> {
   final searchTextController = TextEditingController();
 
   List<Character> characters = [];
+  List<Character> searchedNetworkCharacters = [];
+  List<Character> searchedLoadedCharacters = [];
+
   int paginationOffset = 0;
+
   bool isFirstFetch = false;
   bool isLoading = false;
-
-  List<Character> searchedNetworkCharacters = [];
-
-  List<Character> searchedLoadedCharacters = [];
   bool isSearchingLocal = false;
   bool isSearchingNetwork = false;
 
-  // toggleIsSearchingLocal(bool flag) {
-  //   isSearchingLocal = flag;
-  //   emit(SearchingState());
-  // }
-
-  toggleIsLoading(bool flag) {
-    isLoading = flag;
-    emit(LoadingState());
-  }
-
   void loadCharacters() {
-    // this line prevents unnecessary calls when swiping at bottom
+    /// This line prevents unnecessary calls when swiping at bottom
     if (isLoading) return;
 
     if (paginationOffset == 0) {
@@ -74,10 +62,19 @@ class CharactersCubit extends Cubit<CharactersState> {
     emit(AddSearchedItemToSearchedListState());
   }
 
+  toggleIsLoading(bool flag) {
+    isLoading = flag;
+    emit(LoadingState());
+  }
+
   void startSearch(
       {bool isSearchingOnNetwork = false, String searchValue = ''}) {
     if (isSearchingOnNetwork) {
       isSearchingNetwork = true;
+
+      /// Emitting this state before calling the method to notify all listeners
+      /// about [isSearchingNetwork] is now true so that no characters will try to
+      /// be loaded when searching but the search result
       emit(StartSearchState());
       loadSearchedNetworkCharacters(searchValue);
     } else {

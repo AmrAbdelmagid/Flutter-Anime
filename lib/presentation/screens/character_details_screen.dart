@@ -1,4 +1,3 @@
-import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../business_logic/cubits/cubit/quotes_cubit.dart';
@@ -8,11 +7,13 @@ import '../widgets/character_details_screen_widgets/animated_quote.dart';
 import '../widgets/character_details_screen_widgets/character_info.dart';
 import '../widgets/character_details_screen_widgets/character_sliver_app_bar.dart';
 import '../widgets/character_details_screen_widgets/editable_divider.dart';
+import 'package:intl/intl.dart';
 
 class CharacterDetailsScreen extends StatefulWidget {
   final Character character;
-  const CharacterDetailsScreen({Key? key, required this.character})
-      : super(key: key);
+  final DateFormat dateFormat = DateFormat();
+
+  CharacterDetailsScreen({Key? key, required this.character}) : super(key: key);
 
   @override
   State<CharacterDetailsScreen> createState() => _CharacterDetailsScreenState();
@@ -49,8 +50,9 @@ class _CharacterDetailsScreenState extends State<CharacterDetailsScreen> {
                       EditableDivider(endIndent: 280),
                       CharacterInfo(
                           title: 'Created at',
-                          value:
-                              widget.character.characterAttributes!.createdAt),
+                          value: widget.dateFormat.add_yMd().format(
+                              DateTime.parse(widget
+                                  .character.characterAttributes!.createdAt))),
                       EditableDivider(endIndent: 240),
                       CharacterInfo(
                           title: 'Description',
