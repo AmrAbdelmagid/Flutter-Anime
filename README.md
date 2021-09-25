@@ -2,7 +2,8 @@
 
 A flutter application that loads anime characters and view their details.
 
-## View
+## View 
+##### (if it lags, kindly wait the browser to load the asset)
 
   <tr>
     <td><img src="gif/flutter_anime.gif" width=270 height=480></td>
